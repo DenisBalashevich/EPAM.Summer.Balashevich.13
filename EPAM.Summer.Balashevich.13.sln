@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatrixTask", "MatrixTask\MatrixTask.csproj", "{EE33D87F-CD58-474E-89A7-CF7230F0A9D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryTreeTask", "BinaryTreeTask\BinaryTreeTask.csproj", "{C2FE1006-8191-4A0F-91DB-F09B698FF3AD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE33D87F-CD58-474E-89A7-CF7230F0A9D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE33D87F-CD58-474E-89A7-CF7230F0A9D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE33D87F-CD58-474E-89A7-CF7230F0A9D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE33D87F-CD58-474E-89A7-CF7230F0A9D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2FE1006-8191-4A0F-91DB-F09B698FF3AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2FE1006-8191-4A0F-91DB-F09B698FF3AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2FE1006-8191-4A0F-91DB-F09B698FF3AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2FE1006-8191-4A0F-91DB-F09B698FF3AD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
