@@ -11,12 +11,9 @@ namespace MatrixTask
     /// Square matrix
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class SquareMatrix<T> : Matrix<T>, IEnumerable<T>
+    public class SquareMatrix<T> : SquareMatrixAbstract<T>, IEnumerable<T>
     {
-        private readonly T[,] coefficients;
-        public int Dimention { get; } = 0;
-
-        public event EventHandler<MatrixChangeEventArgs> ChangeElement = delegate { };
+        private readonly T[] _coeff;
 
         public SquareMatrix() : this(new T[1, 1]) { }
 
@@ -29,36 +26,23 @@ namespace MatrixTask
             if (matrix.GetLength(0) != matrix.GetLength(1))
                 throw new ArgumentException();
             Dimention = matrix.GetLength(0);
-            coefficients = matrix;
+            _coeff = new T[matrix.GetLength(0) * matrix.GetLength(0)];
+            InitMatrix(matrix);
         }
 
-        /// <summary>
-        /// override indexator
-        /// </summary>
-        /// <param name="i"></param>
-        /// <param name="j"></param>
-        /// <returns></returns>
-        public override T this[int i, int j]
+        protected override T GetIndex(int i, int j)
         {
-            get
-            {
-                if (i < 0 || j < 0 || i > Dimention + 1 || j > Dimention + 1)
-                    throw new ArgumentException();
-                return coefficients[i - 1, j - 1];
-            }
-            set
-            {
-                if (i < 0 || j < 0 || i > Dimention + 1 || j > Dimention + 1)
-                    throw new ArgumentException();
-                coefficients[i - 1, j - 1] = value;
-                OnNewMail(new MatrixChangeEventArgs(string.Format("element i={0}, j={1}, was changed to {2}", i, j, value)));
-            }
+            return _coeff[i * Dimention + j];
         }
 
+        protected override void SetIndex(int i, int j, T val)
+        {
+            _coeff[i * Dimention + j] = val;
+        }
 
         public IEnumerator<T> GetEnumerator()
         {
-            foreach (var a in coefficients)
+            foreach (var a in _coeff)
             {
                 yield return a;
             }
@@ -69,38 +53,11 @@ namespace MatrixTask
             return GetEnumerator();
         }
 
-        /// <summary>
-        /// Show matrixe
-        /// </summary>
-        /// <returns></returns>
-        public override string ToString()
+        private void InitMatrix(T[,] matrix)
         {
-            if (ReferenceEquals(coefficients, null))
-                throw new ArgumentNullException();
-
-            var result = new StringBuilder();
-            for (var i = 0; i < coefficients.GetLength(0); i++)
-            {
-                for (var j = 0; j < coefficients.GetLength(0); j++)
-                {
-                    if (ReferenceEquals(coefficients[i, j], null))
-                        result.Append("NaN ");
-                    result.Append(coefficients[i, j] + " ");
-                }
-                result.Append("\n");
-            }
-            return result.ToString();
+            for (int i = 0; i < Dimention; i++)
+                for (int j = 0; j < Dimention; j++)
+                    _coeff[i * Dimention + j] = matrix[i, j];
         }
-
-        protected virtual void OnNewMail(MatrixChangeEventArgs e)
-        {
-            EventHandler<MatrixChangeEventArgs> temp = ChangeElement;
-
-            if (temp != null)
-            {
-                temp(this, e);
-            }
-        }
-
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 
 
 namespace MatrixTask
@@ -9,8 +10,8 @@ namespace MatrixTask
     /// <typeparam name="T"></typeparam>
     public class ComputeSumVisitor<T> : IMatrixVisitor<T>
     {
-        public SquareMatrix<T> Result { get; private set; }
-        public void Visit(SquareMatrix<T> first, SquareMatrix<T> second)
+        public SquareMatrixAbstract<T> Result { get; private set; }
+        public void Visit(SquareMatrixAbstract<T> first, SquareMatrixAbstract<T> second)
         {
             if (ReferenceEquals(first, null) || ReferenceEquals(second, null))
                 throw new ArgumentNullException();
@@ -20,8 +21,18 @@ namespace MatrixTask
             for (var i = 0; i < first.Dimention; i++)
             {
                 for (var j = 0; j < second.Dimention; j++)
-                    Result[i + 1, j + 1] = (dynamic)first[i + 1, j + 1] + (dynamic)second[i + 1, j + 1];
+                {
+                    try
+                    {
+                        Result[i + 1, j + 1] = (T) ((dynamic) first[i + 1, j + 1] + second[i + 1, j + 1]);
+                    }
+                    catch (Exception)
+                    {
+                        throw new ArgumentException();
+                    }
+                }
             }
         }
     }
 }
+

@@ -11,7 +11,7 @@ namespace MatrixTask
     /// </summary>
     public static class MatrixExtensions
     {
-        public static Matrix<T> GetSum<T>(this Matrix<T> first, Matrix<T> second)
+        public static SquareMatrixAbstract<T> GetSum<T>(this SquareMatrixAbstract<T> first, SquareMatrixAbstract<T> second)
         {
             var visitor = new ComputeSumVisitor<T>();
             first.Accept(visitor, second);

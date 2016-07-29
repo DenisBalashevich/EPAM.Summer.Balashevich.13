@@ -12,6 +12,6 @@ namespace MatrixTask
     /// <typeparam name="T"></typeparam>
     public interface IMatrixVisitor<T>
     {
-        void Visit(SquareMatrix<T> first, SquareMatrix<T> second);
+        void Visit(SquareMatrixAbstract<T> first, SquareMatrixAbstract<T> second);
     }
 }
